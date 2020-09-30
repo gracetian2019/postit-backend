@@ -7,38 +7,38 @@ class Api::V1::PostsController < ApplicationController
       end
     
       def show
-        post = Post.find(params[:id])
+        @post = Post.find(params[:id])
 
-        render json: post
+        render json: @post
       end
 
       def create 
         
-        post = Post.create({
+        @post = Post.create({
           title: params[:title],
           content: params[:content],   
           user_id: params[:user_id],
           likes: params[:likes]
         })
          
-        render json: post
+        render json: @post
       end
 
       def likes
-        post = Post.find(params[:id])
+        @post = Post.find(params[:id])
     
-        post.update(likes: post.likes + 1)
+        @post.update(likes: @post.likes + 1)
     
-        render json: post
+        render json: @post
       end 
 
       def unlikes
         
-          post = Post.find(params[:id])
+          @post = Post.find(params[:id])
       
-          post.update(likes: post.likes - 1)
+          @post.update(likes: post.likes - 1)
       
-          render json: post
+          render json: @post
        
       end
 

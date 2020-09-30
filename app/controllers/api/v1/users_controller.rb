@@ -22,8 +22,6 @@ class Api::V1::UsersController < ApplicationController
       @user = User.find_by(username: params[:username])
       #byebug
       if @user && @user.authenticate(params[:password])
-       
-        # token = encode_token(user.id)
         render json: @user
       else
         render json: {message: "Invalid username or password"}
